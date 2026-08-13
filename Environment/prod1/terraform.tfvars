@@ -1,6 +1,6 @@
 rgs = {
   rg1 = {
-    name     = "rg-ankit"
+    name     = "rg-ankitbhakua"
     location = "korea central"
   }
 }
@@ -8,7 +8,7 @@ vnet = {
   vnet1 = {
     name                = "vnet-ankit"
     location            = "korea central"
-    resource_group_name = "rg-ankit"
+    resource_group_name = "rg-ankitbhakua"
     address_space       = ["10.0.0.0/16"]
     dns_servers         = ["10.0.0.4", "10.0.0.5"]
   }
@@ -18,14 +18,14 @@ vnet = {
 subnet = {
   subnet1 = {
     name                 = "frontend-subnet"
-    resource_group_name  = "rg-ankit"
+    resource_group_name  = "rg-ankitbhakua"
     virtual_network_name = "vnet-ankit"
     address_prefixes     = ["10.0.1.0/24"]
   }
   subnet2 = {
 
     name                 = "backend-subnet"
-    resource_group_name  = "rg-ankit"
+    resource_group_name  = "rg-ankitbhakua"
     virtual_network_name = "vnet-ankit"
     address_prefixes     = ["10.0.2.0/24"]
   }
@@ -34,7 +34,7 @@ subnet = {
 public_ip = {
   pip1 = {
     name                = "frontend-pip"
-    resource_group_name = "rg-ankit"
+    resource_group_name = "rg-ankitbhakua"
     location            = "korea central"
     allocation_method   = "Static"
   }
@@ -44,7 +44,7 @@ nic = {
   nic1 = {
     name                 = "frontend-nic"
     location             = "korea central"
-    resource_group_name  = "rg-ankit"
+    resource_group_name  = "rg-ankitbhakua"
     subnet_name          = "frontend-subnet"
     virtual_network_name = "vnet-ankit"
     public_name          = "frontend-pip"
@@ -65,7 +65,7 @@ vm = {
   vm1 = {
 
     name                = "linux-vm"
-    resource_group_name = "rg-ankit"
+    resource_group_name = "rg-ankitbhakua"
     location            = "korea central"
     size                = "Standard_D4_v5"
     admin_username      = "admin_ankit"
