@@ -19,14 +19,14 @@ subnet = {
   subnet1 = {
     name                 = "frontend-subnet"
     resource_group_name  = "rg-ankit"
-    virtual_network_name = "vnet-ankit1"
+    virtual_network_name = "vnet-ankit"
     address_prefixes     = ["10.0.1.0/24"]
   }
   subnet2 = {
 
     name                 = "backend-subnet"
     resource_group_name  = "rg-ankit"
-    virtual_network_name = "vnet-ankit1"
+    virtual_network_name = "vnet-ankit"
     address_prefixes     = ["10.0.2.0/24"]
   }
 
@@ -46,7 +46,7 @@ nic = {
     location             = "korea central"
     resource_group_name  = "rg-ankit"
     subnet_name          = "frontend-subnet"
-    virtual_network_name = "vnet-ankit1"
+    virtual_network_name = "vnet-ankit"
     public_name          = "frontend-pip"
 
 
