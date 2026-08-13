@@ -1,0 +1,52 @@
+name: 'Terraform Azure VM Pipeline'
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  terraform:
+    name: 'Terraform Plan & Apply'
+    runs-on: ubuntu-latest
+
+    # Script ko Environment/prod1 folder se run karega jahan main.tf aur tfvars hain
+    defaults:
+      run:
+        working-directory: ./Environment/prod1
+
+    # In 4 secrets ke zariye Azure me login/authentication hoga
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 'latest'
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Format Check
+      run: terraform fmt -check
+      continue-on-error: true
+
+    - name: Terraform Plan
+      run: terraform plan
+
+    - name: Terraform Apply
+      # Auto apply sirf tab chalega jab changes 'main' ya 'master' branch par push honge
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' && github.event_name == 'push'
+      run: terraform apply -auto-approve
